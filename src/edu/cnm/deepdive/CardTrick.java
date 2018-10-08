@@ -1,9 +1,7 @@
 package edu.cnm.deepdive;
 
 import edu.cnm.deepdive.Suit.Color;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Stack;
 

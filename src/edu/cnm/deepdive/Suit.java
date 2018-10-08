@@ -18,8 +18,6 @@ public enum Suit {
     this.symbol=symbol;
 
   }
-
-
   public Color getColor() {
     return color;
   }

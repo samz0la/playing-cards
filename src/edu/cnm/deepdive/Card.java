@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
-public class Card {
+public class Card implements Comparable<Card> {
 
 
   private Rank rank;
@@ -17,6 +18,7 @@ public class Card {
     this.rank = rank;
     this.suit = suit;
   }
+
   public Rank getRank() {
     return rank;
   }
@@ -30,19 +32,32 @@ public class Card {
     return rank.getSymbol() + suit.getSymbol();
   }
 
-  public static void main(String[] args) {
-    List<Card> deck = new ArrayList<>();
-
-
-    for (Suit suit: Suit.values()) {
-      for (Rank rank : Rank.values()) {
-      Card card = new Card(rank, suit);
-      deck.add(card);
-      }
+  @Override
+  public int compareTo(Card other) {
+    int comparison = this.suit.compareTo(other.suit);
+    if (comparison == 0) {
+     comparison = this.rank.compareTo(other.rank);
     }
-
-    Collections.shuffle(deck);
-
+  return comparison;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Card card = (Card) o;
+    return rank == card.rank &&
+        suit == card.suit;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(rank, suit);
+  }
+
 
 }
